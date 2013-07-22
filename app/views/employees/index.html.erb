@@ -38,7 +38,7 @@
             <td><%=  employee.projects.sum(:fifth_week)*2.5%> %</td>
             <td><%=  employee.projects.sum(:sixth_week)*2.5%> %</td>
             <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-            <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Destroy', employee, method: :delete, :remote => true,data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </table>
