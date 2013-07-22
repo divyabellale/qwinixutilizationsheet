@@ -4,8 +4,14 @@ gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :development do
+  gem 'mysql2'
+end
 
-gem 'mysql2'
+group :production do
+  gem 'pg'
+end
+
 gem 'rb-readline', '~> 0.4.2'
 gem 'therubyracer'
 gem "less-rails"
