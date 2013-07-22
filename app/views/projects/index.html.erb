@@ -1,0 +1,40 @@
+<div class="container container-fluid wall">
+  <div class="pull-right" >
+    <%= link_to 'Add Project', new_employee_project_path,:class => 'btn', :style=>"margin-top:10px;" %>&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <h3>Projects for <%=  @employee.name.capitalize %></h3>
+
+  <table class="table table-striped table-condenced">
+    <tr>
+      <th>Name</th>
+      <%  d=Date.today%>
+      <%  w=d.beginning_of_week(start_day = :monday)%>
+      <th><%= w.strftime("%d-%b-%y") %></th>
+      <th><%= (w += 7).strftime("%d-%b-%y") %></th>
+      <th><%= (w += 7).strftime("%d-%b-%y") %></th>
+      <th><%= (w += 7).strftime("%d-%b-%y") %></th>
+      <th><%= (w += 7).strftime("%d-%b-%y") %></th>
+      <th><%= (w += 7).strftime("%d-%b-%y") %></th>
+      <th></th>
+    </tr>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <%= form_for([@employee,project]) do |f| %>
+          <td><%=  f.text_field :first_week,:style => "width:50px;height:13px;" %></td>
+          <td><%=  f.text_field :second_week,:style => "width:50px;height:13px;"%></td>
+          <td><%=  f.text_field :third_week,:style => "width:50px;height:13px;"%></td>
+          <td><%=  f.text_field :fourth_week,:style => "width:50px;height:13px;"%></td>
+          <td><%=  f.text_field :fifth_week,:style => "width:50px;height:13px;"%></td>
+          <td> <%=  f.text_field :sixth_week,:style => "width:50px;height:13px;"%></td>
+          <td><%= f.submit 'save' %></td>
+        <% end %>
+       
+      </tr>
+    <% end %>
+  </table>
+
+  <br />
+
+  <%= link_to 'Back', employees_path,:class => "btn" %>
+</div>

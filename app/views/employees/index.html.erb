@@ -1,0 +1,49 @@
+<div class="wall container container-fluid">
+
+  <div class="row-fluid">
+    <div class="span12" style="text-align: center;">
+      <h1>Qwinix Utilization Dashboard</h1>
+    </div>
+  </div>
+  <h3 class="pull-left">Employees</h3>
+
+  <div class="pull-right">
+    <%= link_to 'New Employee', new_employee_path,:class => 'btn'  %>&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="row-fluid">
+    <div class="span12" style="height:350px; overflow: auto;">
+      <table class="table table-condensed table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Designation</th>
+          <%  d=Date.today%>
+          <%  w=d.beginning_of_week(start_day = :monday)%>
+          <th><%= w.strftime("%d-%b-%y") %></th>
+          <th><%= (w += 7).strftime("%d-%b-%y") %></th>
+          <th><%= (w += 7).strftime("%d-%b-%y") %></th>
+          <th><%= (w += 7).strftime("%d-%b-%y") %></th>
+          <th><%= (w += 7).strftime("%d-%b-%y") %></th>
+          <th><%= (w+= 7).strftime("%d-%b-%y") %></th>
+          <th></th><th></th>
+        </tr>
+
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.name.capitalize %></td>
+            <td><%= employee.designation.capitalize %></td>
+            <td><%=  employee.projects.sum(:first_week)*2.5%> %</td>
+            <td><%=  employee.projects.sum(:second_week)*2.5%> %</td>
+            <td><%=  employee.projects.sum(:third_week)*2.5%> %</td>
+            <td><%=  employee.projects.sum(:fourth_week)*2.5%> %</td>
+            <td><%=  employee.projects.sum(:fifth_week)*2.5%> %</td>
+            <td><%=  employee.projects.sum(:sixth_week)*2.5%> %</td>
+            <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+            <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+  </div>
+
+</div>

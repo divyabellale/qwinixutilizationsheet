@@ -1,0 +1,38 @@
+<div class="wall container-fluid">
+ 
+<div class="row-fluid">
+  <div class="span12" style="text-align: center;">
+    <h1>Qwinix Utilization Dashboard</h1>
+  </div>
+</div>
+<h3 class="pull-left">Employees</h3>
+
+<table class="table table-condensed table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Designation</th>
+    <th><%=  Date.today%></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.designation %></td>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_user_path %>
+</div>

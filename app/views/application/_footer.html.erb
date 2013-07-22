@@ -1,0 +1,18 @@
+<div class="wall container container-fluid" >
+
+  <% if @employees.nil? %>
+  <% else %>
+    <div class="pagination pagination-small">
+      <ul>
+        <% @employees.each do |employee| %>
+          <li class="active">
+            <%= link_to employee.name.capitalize, :controller => "projects", :action => "index", :employee_id => employee.id, :employee_name => employee.name,:style => "font-weight:bold;color:black;" %>
+          </li>
+        <% end %></ul>
+    </div>
+  <% end %>
+</div>
+<div class=" navbar-inner">
+
+</div>
+
