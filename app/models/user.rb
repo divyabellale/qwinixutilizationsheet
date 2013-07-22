@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,:image,:remote_image_url
   attr_accessible :designation, :name
   has_many :projects
-  mount_uploader :image, ImageUploader
+
 end
